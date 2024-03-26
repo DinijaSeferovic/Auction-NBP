@@ -13,7 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class ItemReview {
+public class ProductReview {
 
     @Id
     @Column(nullable = false)
