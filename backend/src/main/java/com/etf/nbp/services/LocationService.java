@@ -24,7 +24,7 @@ public class LocationService {
      * @param userId user that needs location update
      * @return added location
      */
-    public Location addLocationIfNotExist(LocationDTO locationRequest, UUID userId) {
+    public Location addLocationIfNotExist(LocationDTO locationRequest, int userId) {
         final Location location = new Location(locationRequest);
         if (!locationRepository.existsByAddressAndCityAndZipCodeAndCountry(location.getAddress(), location.getCity(), location.getZipCode(), location.getCountry())) {
             final Location newLocation = locationRepository.save(location);

@@ -5,7 +5,6 @@ import com.etf.nbp.services.LocationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.UUID;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -25,7 +24,7 @@ public class LocationController {
      * @return {@link ResponseEntity} with added location
      */
     @PostMapping("/user/{userId}")
-    public ResponseEntity<?> addLocationIfNotExist(@RequestBody LocationDTO location, @PathVariable UUID userId) {
+    public ResponseEntity<?> addLocationIfNotExist(@RequestBody LocationDTO location, @PathVariable int userId) {
         locationService.addLocationIfNotExist(location, userId);
         return ResponseEntity.ok("Successful adding");
     }

@@ -48,7 +48,7 @@ public class ProductController {
      * @return found product as {@link ProductDTO}
      */
     @GetMapping("/{id}")
-    public ProductDTO getProduct(@PathVariable UUID id) {
+    public ProductDTO getProduct(@PathVariable int id) {
         return productService.getProduct(id);
     }
 
@@ -109,7 +109,7 @@ public class ProductController {
      * @return list of {@link ProductDTO}
      */
     @GetMapping("/categories/{id}")
-    public List<ProductDTO> getProductsByCategory(@PathVariable UUID id, @RequestParam int page, @RequestParam int limit) {
+    public List<ProductDTO> getProductsByCategory(@PathVariable int id, @RequestParam int page, @RequestParam int limit) {
         return productService.getProductsByCategory(id, page, limit);
     }
 
@@ -120,7 +120,7 @@ public class ProductController {
      * @return count
      */
     @GetMapping("/subcategories/{id}/count")
-    public long getProductCountBySubcategory(@PathVariable UUID id) {
+    public long getProductCountBySubcategory(@PathVariable int id) {
         return productService.getProductCountBySubcategory(id);
     }
 
@@ -134,7 +134,7 @@ public class ProductController {
      * @return list {@link ProductDTO}
      */
     @GetMapping("/search")
-    public List<ProductDTO> getFilteredProducts(@RequestParam(value = "name", required = false) String name, @RequestParam(value = "categoryId", required = false) UUID categoryId, @RequestParam int page, @RequestParam int limit) {
+    public List<ProductDTO> getFilteredProducts(@RequestParam(value = "name", required = false) String name, @RequestParam(value = "categoryId", required = false) Integer categoryId, @RequestParam int page, @RequestParam int limit) {
         if (name!=null && categoryId!=null) {
             return productService.getProductsByNameAndCategory(name, categoryId, page, limit);
         }
@@ -157,7 +157,7 @@ public class ProductController {
      * @return {@link ResponseEntity}
      */
     @PutMapping("/{productId}/paid-status")
-    public ResponseEntity<?> updatePaidStatus(@RequestBody Boolean paid, @PathVariable UUID productId) {
+    public ResponseEntity<?> updatePaidStatus(@RequestBody boolean paid, @PathVariable int productId) {
         productService.updatePaidStatus(paid, productId);
         return ResponseEntity.ok("Successful update");
     }
@@ -170,7 +170,7 @@ public class ProductController {
      * @return {@link ResponseEntity}
      */
     @PutMapping("/{productId}/update-buyer")
-    public ResponseEntity<?> updateProductBuyer(@RequestParam UUID user, @PathVariable UUID productId) {
+    public ResponseEntity<?> updateProductBuyer(@RequestParam int user, @PathVariable int productId) {
         productService.updateBuyer(user, productId);
         return ResponseEntity.ok("Successful update");
     }
@@ -187,7 +187,7 @@ public class ProductController {
      * @return {@link ResponseEntity}
      */
     @PutMapping("/{productId}/end-date")
-    public ResponseEntity<?> updateEndDate(@RequestParam int year, @RequestParam int month, @RequestParam int day, @RequestParam int hour, @RequestParam int minute, @PathVariable UUID productId) {
+    public ResponseEntity<?> updateEndDate(@RequestParam int year, @RequestParam int month, @RequestParam int day, @RequestParam int hour, @RequestParam int minute, @PathVariable int productId) {
         LocalDateTime newEndDate = LocalDateTime.of(year, month, day, hour, minute);
         productService.updateEndDate(newEndDate, productId);
         return ResponseEntity.ok("Successful end date update");

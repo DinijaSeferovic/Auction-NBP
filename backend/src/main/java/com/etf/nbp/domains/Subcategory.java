@@ -1,10 +1,8 @@
 package com.etf.nbp.domains;
 
 import lombok.*;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import java.util.UUID;
 
 @Entity
 @Table
@@ -17,7 +15,7 @@ public class Subcategory {
     @Id
     @Column(nullable = false)
     @GeneratedValue
-    private UUID id;
+    private int id;
 
     @Column(nullable = false)
     private String name;

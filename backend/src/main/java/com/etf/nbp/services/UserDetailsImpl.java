@@ -12,7 +12,7 @@ import java.util.*;
 
 public class UserDetailsImpl implements UserDetails {
 
-    private UUID id;
+    private int id;
 
     private String email;
 
@@ -29,19 +29,19 @@ public class UserDetailsImpl implements UserDetails {
 
     private String picture;
 
-    private Boolean active;
+    private boolean active;
 
     private Location location;
 
     private Card card;
 
-    private Set<Role> roles;
+    private Role role;
 
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserDetailsImpl(UUID id, String email, String password, String firstName, String lastName,
-                           Date dateOfBirth, String phoneNumber, String picture, Boolean active,
-                           Location location, Card card, Set<Role> roles) {
+    public UserDetailsImpl(int id, String email, String password, String firstName, String lastName,
+                           Date dateOfBirth, String phoneNumber, String picture, boolean active,
+                           Location location, Card card, Role role) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -53,10 +53,10 @@ public class UserDetailsImpl implements UserDetails {
         this.active = active;
         this.location = location;
         this.card = card;
-        this.roles = roles;
+        this.role = role;
     }
 
-    public UserDetailsImpl(UUID id, String email, String password) {
+    public UserDetailsImpl(int id, String email, String password) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -73,10 +73,10 @@ public class UserDetailsImpl implements UserDetails {
                 user.getBirthDate(),
                 user.getPhoneNumber(),
                 user.getImagePath(),
-                user.getActive(),
+                user.isActive(),
                 user.getLocation(),
                 user.getCard(),
-                user.getRoles());
+                user.getRole());
     }
 
     @Override
@@ -84,7 +84,7 @@ public class UserDetailsImpl implements UserDetails {
         return authorities;
     }
 
-    public UUID getId() {
+    public int getId() {
         return id;
     }
 
@@ -122,7 +122,7 @@ public class UserDetailsImpl implements UserDetails {
         return picture;
     }
 
-    public Boolean getActive() {
+    public boolean getActive() {
         return active;
     }
 
@@ -134,8 +134,8 @@ public class UserDetailsImpl implements UserDetails {
         return card;
     }
 
-    public Set<Role> getRoles() {
-        return roles;
+    public Role getRoles() {
+        return role;
     }
 
     @Override

@@ -5,7 +5,6 @@ import com.etf.nbp.repositories.RoleRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class RoleService {
@@ -31,7 +30,7 @@ public class RoleService {
      * @param id id of the role
      * @return found {@link Role}
      */
-    public Role findById(UUID id) {
+    public Role findById(int id) {
         return roleRepository.findById(id);
     }
 

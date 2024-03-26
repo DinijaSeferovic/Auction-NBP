@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Table
@@ -14,7 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Bid {
+public class ItemReview {
 
     @Id
     @Column(nullable = false)
@@ -30,15 +29,8 @@ public class Bid {
     private User user;
 
     @Column
-    private double amount;
+    private double rating;
 
     @Column
-    private LocalDateTime bidDateTime;
-
-    public Bid(Product product, User user, double amount, LocalDateTime bidDateTime) {
-        this.product = product;
-        this.user = user;
-        this.amount = amount;
-        this.bidDateTime = bidDateTime;
-    }
+    private String comment;
 }

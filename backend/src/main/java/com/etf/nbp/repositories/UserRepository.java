@@ -15,12 +15,12 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     Optional<User> findByEmail(String email);
 
-    User findById(UUID id);
+    User findById(int id);
 
     Boolean existsByEmail(String email);
 
     @Query(value = "UPDATE users SET location_id=:locationId WHERE id=:userId", nativeQuery = true)
-    void updateUserLocation(UUID locationId, UUID userId);
+    void updateUserLocation(int locationId, int userId);
 
     @Transactional
     @Modifying(clearAutomatically = true)

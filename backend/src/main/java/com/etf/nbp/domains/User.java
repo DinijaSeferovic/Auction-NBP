@@ -8,9 +8,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.UUID;
 
 @Entity
 @Table(name = "users")
@@ -23,7 +20,7 @@ public class User {
     @Id
     @Column(nullable = false)
     @GeneratedValue
-    private UUID id;
+    private int id;
 
     @Column(nullable = false)
     private String firstName;
@@ -48,13 +45,11 @@ public class User {
     private String imagePath;
 
     @Column
-    private Boolean active;
+    private boolean active;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(	name = "user_role",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "role_id")
+    private Role role;
 
     @ManyToOne
     @JoinColumn(name = "location_id")
@@ -69,7 +64,7 @@ public class User {
         this.password = password;
     }
 
-    public User(String email, String firstName, String lastName, String password, Boolean active) {
+    public User(String email, String firstName, String lastName, String password, boolean active) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;

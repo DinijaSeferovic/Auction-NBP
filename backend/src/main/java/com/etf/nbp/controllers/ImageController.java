@@ -25,7 +25,7 @@ public class ImageController {
      * @return list of {@link ImageDTO}
      */
     @GetMapping("/{id}")
-    public List<ImageDTO> getImagesByProduct(@PathVariable UUID id) {
+    public List<ImageDTO> getImagesByProduct(@PathVariable int id) {
         return imageService.getImagesByProductId(id);
     }
 }

@@ -4,11 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Entity
 @Table
@@ -21,7 +19,7 @@ public class Product {
     @Id
     @Column(nullable = false)
     @GeneratedValue
-    private UUID id;
+    private int id;
 
     @Column(nullable = false)
     private String name;
@@ -38,10 +36,10 @@ public class Product {
     private String description;
 
     @Column
-    private UUID sellerId;
+    private int sellerId;
 
     @Column(nullable = false)
-    private Double startPrice;
+    private double startPrice;
 
     @Column(columnDefinition = "TIMESTAMP", nullable = false)
     private LocalDateTime startDate;
@@ -50,13 +48,13 @@ public class Product {
     private LocalDateTime endDate;
 
     @Column
-    private UUID buyerId;
+    private int buyerId;
 
     @Column
-    private Boolean paid;
+    private boolean paid;
 
     @Column
-    private Double size;
+    private double size;
 
     @Column
     private String color;

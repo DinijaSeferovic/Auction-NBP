@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -16,7 +15,7 @@ public class JwtResponseDTO {
 
     private String token;
 
-    private UUID id;
+    private int id;
 
     private String firstName;
 
@@ -24,5 +23,5 @@ public class JwtResponseDTO {
 
     private String email;
 
-    private List<String> roles;
+    private String role;
 }

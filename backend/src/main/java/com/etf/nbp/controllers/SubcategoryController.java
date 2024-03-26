@@ -25,7 +25,7 @@ public class SubcategoryController {
      * @return list of {@link SubcategoryDTO}
      */
     @GetMapping("/categories/{id}")
-    public List<SubcategoryDTO> getSubcategoriesByCategoryId(@PathVariable UUID id) {
+    public List<SubcategoryDTO> getSubcategoriesByCategoryId(@PathVariable int id) {
         return subcategoryService.getSubcategoriesByCategoryId(id);
     }
 }

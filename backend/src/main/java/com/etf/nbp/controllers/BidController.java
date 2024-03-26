@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -43,7 +42,7 @@ public class BidController {
                 biddingRequest.getAmount(), LocalDateTime.now());
         final Bid highestBid = bidService.getHighestBid(biddingRequest.getProductId());
 
-        if (highestBid != null && highestBid.getUser().getId().equals(biddingRequest.getUserId()) && highestBid.getAmount() < biddingRequest.getAmount()) {
+        if (highestBid != null && highestBid.getUser().getId()==biddingRequest.getUserId() && highestBid.getAmount() < biddingRequest.getAmount()) {
             return ResponseEntity
                     .badRequest()
                     .body("You cannot outbid yourself!");
@@ -74,7 +73,7 @@ public class BidController {
      * @return highest bid
      */
     @GetMapping("/api/product/{productId}/bids/highest")
-    public Bid getHighestBid(@PathVariable UUID productId) {
+    public Bid getHighestBid(@PathVariable int productId) {
         return bidService.getHighestBid(productId);
     }
 
@@ -85,7 +84,7 @@ public class BidController {
      * @return count of the bids
      */
     @GetMapping("/api/product/{productId}/bids/count")
-    public long getBidCount(@PathVariable UUID productId) {
+    public long getBidCount(@PathVariable int productId) {
         return bidService.getBidCount(productId);
     }
 }

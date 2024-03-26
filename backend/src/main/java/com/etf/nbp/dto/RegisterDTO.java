@@ -25,7 +25,7 @@ public class RegisterDTO implements AuthDTO {
 
     private String password;
 
-    private Set<String> roles;
+    private String role;
 
 
     @Override

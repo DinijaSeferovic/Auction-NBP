@@ -13,26 +13,18 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Image {
+public class Wishlist {
 
     @Id
     @Column(nullable = false)
     @GeneratedValue
     private int id;
 
-    @Column
-    private String name;
-
-    @Column
-    private String type;
-
-    @Column
-    private String data;
-
-    @Column(nullable = false)
-    private String imagePath;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @ManyToOne
-    @JoinColumn(name="product_id", nullable=false)
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;
 }

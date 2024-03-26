@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -16,7 +15,7 @@ import java.util.UUID;
 @NoArgsConstructor
 public class ProductDTO {
 
-    private UUID id;
+    private int id;
 
     private String name;
 
@@ -26,15 +25,15 @@ public class ProductDTO {
 
     private String description;
 
-    private UUID sellerId;
+    private int sellerId;
 
-    private Double startPrice;
+    private double startPrice;
 
     private LocalDateTime startDate;
 
     private LocalDateTime endDate;
 
-    private UUID buyerId;
+    private int buyerId;
 
-    private Boolean paid;
+    private boolean paid;
 }

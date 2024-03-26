@@ -5,14 +5,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.UUID;
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductRowDTO {
-    private UUID id;
+    private int id;
 
     private String name;
 
@@ -22,11 +20,11 @@ public class ProductRowDTO {
 
     private long bids;
 
-    private Double price;
+    private double price;
 
-    private Double highestBid;
+    private double highestBid;
 
-    private Double growthRate;
+    private double growthRate;
 
     private String imagePath;
 }

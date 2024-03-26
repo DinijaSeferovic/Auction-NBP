@@ -4,7 +4,6 @@ import com.etf.nbp.domains.Bid;
 import com.etf.nbp.repositories.BidRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
 
 @Service
 public class BidService {
@@ -21,7 +20,7 @@ public class BidService {
      * @param productId id of the product for which we need the bid count
      * @return bid count
      */
-    public long getBidCount(UUID productId) {
+    public long getBidCount(int productId) {
         return bidRepository.countByProductId(productId);
     }
 
@@ -31,7 +30,7 @@ public class BidService {
      * @param productId id of the product for which we search the highest bid
      * @return the highest bid
      */
-    public Bid getHighestBid(UUID productId) {
+    public Bid getHighestBid(int productId) {
         return bidRepository.findFirstByProductIdOrderByAmountDesc(productId);
     }
 

@@ -19,7 +19,6 @@ import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class ProductService  {
@@ -51,7 +50,7 @@ public class ProductService  {
      * @param id id of the requested product
      * @return found {@link ProductDTO}
      */
-    public ProductDTO getProduct(UUID id) {
+    public ProductDTO getProduct(int id) {
         return mapper.convertEntityToDto(productRepository.findById(id), ProductDTO.class);
     }
 
@@ -61,7 +60,7 @@ public class ProductService  {
      * @param id id of the requested product
      * @return found {@link Product}
      */
-    public Product getProductById(UUID id) {
+    public Product getProductById(int id) {
         return productRepository.findById(id);
     }
 
@@ -99,7 +98,7 @@ public class ProductService  {
      * @param limit number of products per page
      * @return list of {@link ProductDTO}
      */
-    public List<ProductDTO> getProductsByCategory(UUID id, int page, int limit) {
+    public List<ProductDTO> getProductsByCategory(int id, int page, int limit) {
         Pageable paging = PageRequest.of(page, limit);
         Page<Product> pagedResult = productRepository.findByEndDateAfterAndCategoryId(LocalDateTime.now(), id, paging);
         return mapper.convertListEntityToDto(pagedResult.toList(), ProductDTO.class);
@@ -111,7 +110,7 @@ public class ProductService  {
      * @param id id of the subcategory
      * @return count
      */
-    public long getProductCountBySubcategory(UUID id) {
+    public long getProductCountBySubcategory(int id) {
         return productRepository.countBySubcategoryIdAndEndDateAfter(id, LocalDateTime.now());
     }
 
@@ -163,7 +162,7 @@ public class ProductService  {
      * @param limit number of products per page
      * @return list of {@link ProductDTO}
      */
-    public List<ProductDTO> getProductsByNameAndCategory(String name, UUID categoryId, int page, int limit) {
+    public List<ProductDTO> getProductsByNameAndCategory(String name, int categoryId, int page, int limit) {
         Pageable paging = PageRequest.of(page, limit);
         Page<Product> pagedResult = productRepository.findByEndDateAfterAndCategoryIdAndNameContainingIgnoreCase(LocalDateTime.now(), categoryId, name, paging);
         return mapper.convertListEntityToDto(pagedResult.toList(), ProductDTO.class);
@@ -175,7 +174,7 @@ public class ProductService  {
      * @param paid paid status
      * @param productID product which status is updated
      */
-    public void updatePaidStatus(Boolean paid, UUID productID) {
+    public void updatePaidStatus(boolean paid, int productID) {
         productRepository.updatePaidStatus(paid, productID);
     }
 
@@ -185,7 +184,7 @@ public class ProductService  {
      * @param userId buyer id to be updated
      * @param productID product which buyer is updated
      */
-    public void updateBuyer(UUID userId, UUID productID) {
+    public void updateBuyer(int userId, int productID) {
         productRepository.updateProductBuyer(userId, productID);
     }
 
@@ -235,7 +234,7 @@ public class ProductService  {
         return growthRate;
     }
 
-    public void updateEndDate(LocalDateTime newEndDate, UUID productId) {
+    public void updateEndDate(LocalDateTime newEndDate, int productId) {
         productRepository.updateEndDate(newEndDate, productId);
     }
 }

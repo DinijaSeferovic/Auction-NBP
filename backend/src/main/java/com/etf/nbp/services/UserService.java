@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -55,7 +54,7 @@ public class UserService implements UserDetailsService {
      * @param id provided id
      * @return found user
      */
-    public User findById(UUID id) {
+    public User findById(int id) {
         return userRepository.findById(id);
     }
 
@@ -94,7 +93,7 @@ public class UserService implements UserDetailsService {
         return UserDetailsImpl.build(user);
     }
 
-    public void updateUserLocation(UUID locationId, UUID userId) {
+    public void updateUserLocation(int locationId, int userId) {
         userRepository.updateUserLocation(locationId, userId);
     }
 

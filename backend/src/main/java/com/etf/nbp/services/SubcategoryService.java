@@ -6,7 +6,6 @@ import com.etf.nbp.utils.MapperUtil;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class SubcategoryService {
@@ -25,7 +24,7 @@ public class SubcategoryService {
      * @param categoryId id of the category
      * @return list of {@link SubcategoryDTO}
      */
-    public List<SubcategoryDTO> getSubcategoriesByCategoryId(UUID categoryId) {
+    public List<SubcategoryDTO> getSubcategoriesByCategoryId(int categoryId) {
         return mapper.convertListEntityToDto(subcategoryRepository.findByCategoryId(categoryId), SubcategoryDTO.class);
     }
 }

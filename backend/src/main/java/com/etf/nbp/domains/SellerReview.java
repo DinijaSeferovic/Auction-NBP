@@ -13,26 +13,21 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Image {
+public class SellerReview {
 
     @Id
     @Column(nullable = false)
     @GeneratedValue
     private int id;
 
-    @Column
-    private String name;
-
-    @Column
-    private String type;
-
-    @Column
-    private String data;
-
-    @Column(nullable = false)
-    private String imagePath;
+    @ManyToOne
+    @JoinColumn(name = "buyer_id")
+    private User buyer_id;
 
     @ManyToOne
-    @JoinColumn(name="product_id", nullable=false)
-    private Product product;
+    @JoinColumn(name = "seller_id")
+    private User seller_id;
+
+    @Column
+    private String review;
 }
