@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @AllArgsConstructor
@@ -23,11 +23,11 @@ public class SellerRating {
 
     @ManyToOne
     @JoinColumn(name = "buyer_id")
-    private User buyer_id;
+    private User buyerId;
 
     @ManyToOne
     @JoinColumn(name = "seller_id")
-    private User seller_id;
+    private User sellerId;
 
     @Column
     private String rating;

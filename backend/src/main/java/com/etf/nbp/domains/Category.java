@@ -2,7 +2,7 @@ package com.etf.nbp.domains;
 
 import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @AllArgsConstructor

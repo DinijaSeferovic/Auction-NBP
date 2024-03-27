@@ -1,6 +1,7 @@
 package com.etf.nbp.repositories;
 
 import com.etf.nbp.domains.SellerRating;
+import com.etf.nbp.domains.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +14,7 @@ public interface SellerRatingRepository extends JpaRepository<SellerRating, Inte
 
     List<SellerRating> findAll();
 
-    List<SellerRating> findBySellerId(int id);
+    List<SellerRating> findBySellerId(User sellerId);
 
-    List<SellerRating> findByBuyerId(int id);
+    List<SellerRating> findByBuyerId(User buyerId);
 }
