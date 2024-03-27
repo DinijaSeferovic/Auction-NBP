@@ -10,7 +10,6 @@ import javax.validation.constraints.Email;
 import java.util.Date;
 
 @Entity
-@Table(name = "users")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

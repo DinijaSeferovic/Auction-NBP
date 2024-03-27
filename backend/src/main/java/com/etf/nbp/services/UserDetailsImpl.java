@@ -134,7 +134,7 @@ public class UserDetailsImpl implements UserDetails {
         return card;
     }
 
-    public Role getRoles() {
+    public Role getRole() {
         return role;
     }
 
