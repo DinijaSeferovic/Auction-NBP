@@ -1,28 +1,48 @@
 package com.etf.nbp.repositories;
 
+import com.etf.nbp.database.DatabaseService;
 import com.etf.nbp.domains.User;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import javax.transaction.Transactional;
-import java.util.Optional;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
+public class UserRepository{
 
-    Optional<User> findByEmail(String email);
+    @Autowired
+    DatabaseService dbService;
 
-    User findById(int id);
+    public User getById(int id) {
+        String sql = "SELECT * FROM nbp.nbp_user WHERE id=?";
 
-    Boolean existsByEmail(String email);
+        try {
+            Connection connection = dbService.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1,id);
 
-    @Query(value = "UPDATE users SET location_id=:locationId WHERE id=:userId", nativeQuery = true)
-    void updateUserLocation(int locationId, int userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-    @Transactional
-    @Modifying(clearAutomatically = true)
-    @Query(value = "UPDATE users SET password=:newPassword WHERE email=:email", nativeQuery = true)
-    void changePassword(String email, String newPassword);
+
+            if (resultSet.next()) {
+                String firstName = resultSet.getString("first_name");
+                String lastName = resultSet.getString("last_name");
+                String email = resultSet.getString("email");
+                String password = resultSet.getString("password");
+                String username = resultSet.getString("username");
+                String phoneNumber = resultSet.getString("phone_number");
+                Date birthdate = resultSet.getDate("birth_date");
+
+                return new User(id,firstName,lastName,email,username,password,birthdate,phoneNumber,null,null);
+            }
+
+            return  null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
